@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"
+import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,28 +23,28 @@ export const database = getFirestore(app);
 //exportons les fonctions pour notre crud
 
 // //fonction pour ajouter des données dans la database
-// export const addTask = (title,  body) =>
-//   addDoc(collection(database, "todolist"), {title,  body});
+ export const addTask = (title,  body) =>
+   addDoc(collection(database, "todolist"), {title,  body});
 
 // //fonction pour lister tous les documents
-// export const onGetTasks = (callback) =>
-//   onSnapshot(collection(database, "todolist"), callback);
+export const onGetTasks = (callback) =>
+   onSnapshot(collection(database, "todolist"), callback);
 
 // //fonction pour supprimer des documents
-// export const deleteTask = (id) => deleteDoc(doc(database, "todolist", id));
+export const deleteTask = (id) => deleteDoc(doc(database, "todolist", id));
 
 // //fonction pour lister un document
-// export const getTask = (id) => getDoc(doc(database, "todolist", id));
+ export const getTask = (id) => getDoc(doc(database, "todolist", id));
 
 // //fonction pour mettre à jour les documents
-// export const updateTask = (id, newFields) =>
-//   updateDoc(doc(database, "todolist", id), newFields);
+ export const updateTask = (id, newFields) =>
+ updateDoc(doc(database, "todolist", id), newFields);
 
-// export const crud ={
-//   addTask:(title,  body) =>
-//   addDoc(collection(database, "todolist"), { title,  body }),
-//   onGetTasks : (callback) =>
-//   onSnapshot(collection(database, "todolist"), callback),
-//   updateTask:(id,newFields)=>updateDoc(doc(database, "todolist", id), newFields),
-//   deleteTask : (id) => deleteDoc(doc(database, "todolist", id))
-// }
+ export const crud ={
+   addTask:(title,  body) =>
+   addDoc(collection(database, "todolist"), { title,  body }),
+   onGetTasks : (callback) =>
+   onSnapshot(collection(database, "todolist"), callback),
+   updateTask:(id,newFields)=>updateDoc(doc(database, "todolist", id), newFields),
+   deleteTask : (id) => deleteDoc(doc(database, "todolist", id))
+ }
