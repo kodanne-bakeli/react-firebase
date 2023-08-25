@@ -113,6 +113,8 @@ function App() {
 
     const createBlog = async () => {
         await crud.addTask ( newTitle,  newBody);
+        setNewTitle("")
+        setNewBody("")
     };
 
     const updateTitle = async (id) => {
@@ -125,7 +127,7 @@ function App() {
         await updateDoc(blogDoc, { 
             body: newBody});
 
-        window.location.reload();
+        
     };
 
     const deleteBlog = async (id) => {
@@ -140,36 +142,24 @@ function App() {
 
         getBlogs();
     }, []);
-    function Form() {
-        return(
-            <div>
-                <form onSubmit={createBlog}>
-                <input type="text"
+    return (
+        <div classtitle="App">
+            <input type="text"
                 className="form-control mb-3 w-75 mx-auto"
-                placeholder="title... "
-                value={newTitle}
+                placeholder="title..."
                 onChange={(event) => {
                     setNewTitle(event.target.value);
                 }}
             />
-            <textarea className="form-control w-75 mx-auto mb-3"
+            <textarea className="form-control w-75 mx-auto"
                 placeholder="body..."
-                value={newBody}
                 onChange={(event) => {
                     setNewBody(event.target.value);
                 }}
             >
             </textarea>
 
-            <button className="btn btn-primary" > Create User</button>
-            </form>
-            </div>
-        )
-    }
-
-    return (
-        <div classtitle="App">
-            <Form />
+            <button className="btn btn-primary" onClick={createBlog}> Create User</button>
             {blogs.map((blog) => {
                 return (
                     <div key={blog.id}>
